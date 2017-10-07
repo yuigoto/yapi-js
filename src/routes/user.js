@@ -75,7 +75,6 @@ module.exports = (router, auth) => {
      * Token test/validation.
      */
     router.get("/token", auth, (req, res) => {
-        console.log(req);
         res.send({
             "message": "",
             "client": {},
@@ -120,6 +119,7 @@ module.exports = (router, auth) => {
             )
         };
         
+        // Start async waterfall
         async.waterfall(
             [
                 (callback) => {

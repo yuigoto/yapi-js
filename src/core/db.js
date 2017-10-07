@@ -21,12 +21,24 @@ const database      = require("../config/database.json");
 const dbParser      = (db) => {
     // Set database and auth params
     let auth        = (db.auth) ? db.user + ":" + db.pass + "@" : "";
-    let auth_source = (db.auth) ? "?authSource=" + db.auth_source : "";
     let database    = (db.name !== "") ? "/" + db.name : "";
     let port        = (db.port !== "") ? ":" + db.port : "";
+    
+    // Building arguments
+    let args        = [];
+    
+    // Add arguments
+    if (db.ssl) args.push("ssl=true");
+    if (db.auth) args.push("authSource=" + db.auth_source);
+    
+    if (args.length > 0) {
+        args = `?${args.join("&")}`;
+    } else {
+        args = "";
+    }
 
     if (db.auth === true) {
-        return `mongodb://${auth + db.url + port + database + auth_source}`;
+        return `mongodb://${auth + db.url + port + database + args}`;
     } else {
         return `mongodb://${db.url + port + database}`;
     }
