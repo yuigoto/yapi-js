@@ -1,0 +1,35 @@
+{
+  "name": "yx-js-yapi",
+  "version": "0.0.1",
+  "description": "A simple API built with Node, Express and MongoDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuigoto/yx-js-yapi.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "api"
+  ],
+  "author": "Fabio Yuiti Goto <lab@yuiti.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuigoto/yx-js-yapi/issues"
+  },
+  "homepage": "https://github.com/yuigoto/yx-js-yapi#readme",
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.2",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.1",
+    "mongodb": "^2.2.31"
+  },
+  "devDependencies": {
+    "nodemon": "^1.12.1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "production": {
+    "url": "localhost",
+    "port": "27017", 
+    "name": "SIXSIDED", 
+    "auth": true, 
+    "auth_source": "admin", 
+    "user": "USERNAME", 
+    "pass": "PASSWORD"
+  }, 
+  "development": {
+    "url": "localhost",
+    "port": "27017", 
+    "name": "SIXSIDED", 
+    "auth": true, 
+    "auth_source": "admin", 
+    "user": "USERNAME", 
+    "pass": "PASSWORD"
+  }
+}
