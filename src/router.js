@@ -30,7 +30,10 @@ router.route("/healthcheck").get((req, res) => {
         "client": {},
         "members": {
             "system": "YAPI (Yuiti's API)",
-            "version": global.config.version
+            "version": global.config.version,
+            "author": "Fabio Y. Goto",
+            "copyright": "(c) 2017 Fabio Y. Goto",
+            "license": "MIT"
         },
         "date": new Date().toISOString(),
         "error": global.errors(false, "", {}, 1)

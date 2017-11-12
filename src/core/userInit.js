@@ -24,35 +24,36 @@ const userCreate = (db, callback) => {
     // Check if there's a user in the database already
     db.collection("sys_users").count((err, count) => {
         // If an error occurred, end async
-        if (err) if (callback) callback("stop", false);
-        
-        // If there's no user
-        if (count < 1) {
-            // Fetch initial super user data from global
-            const user  = global.config.init.user;
-            
-            // Insert user into the database
-            db.collection("sys_users").insertOne(user, (err, res) => {
-                if (err) {
-                    // Log error message
-                    console.log("User couldn't be added to the database.");
-                    
-                    // Log error data
-                    console.log(err);
-                } else if (!res) {
-                    // Log error message
-                    console.log("User couldn't be added to the database.");
-                } else {
-                    // Yay!
-                    console.log("Super administrator added successfully.");
-                }
-                
-                // Execute callback
-                if (callback) callback(null, false);
-            });
+        if (err) {
+            if (callback) callback(err, false);
         } else {
-            // Just execute the async callback
-            if (callback) callback(null, false);
+            // If there's no user
+            if (count < 1) {
+                // Fetch initial super user data from global
+                const user  = global.config.init.user;
+                
+                // Insert user into the database
+                db.collection("sys_users").insertOne(user, (err, res) => {
+                    if (err) {
+                        // Log error message
+                        console.log("User couldn't be added to the database.");
+                        
+                        // Log error data
+                        console.log(err);
+                    } else if (!res) {
+                        // Log error message
+                        console.log("User couldn't be added to the database.");
+                    } else {
+                        // Yay!
+                        console.log("Super administrator added successfully.");
+                    }
+                    
+                    // Execute callback
+                    if (callback) callback(null, false);
+                });
+            } else {
+                if (callback) callback(null, false);
+            }
         }
     });
 };

@@ -29,6 +29,7 @@ const dbParser      = (db) => {
     
     // Add arguments
     if (db.ssl) args.push("ssl=true");
+    if (db.replicaSet !== "") args.push("replicaSet=" + db.replicaSet);
     if (db.auth) args.push("authSource=" + db.auth_source);
     
     if (args.length > 0) {
@@ -36,11 +37,27 @@ const dbParser      = (db) => {
     } else {
         args = "";
     }
-
-    if (db.auth === true) {
-        return `mongodb://${auth + db.url + port + database + args}`;
+    
+    if (Array.isArray(db.url)) {
+        let url = [];
+        
+        for (var u = 0; u < db.url.length; u++) {
+            url.push(db.url[u] + port);
+        }
+        
+        url = url.join(",");
+        
+        if (db.auth === true) {
+            return `mongodb://${auth + url + database + args}`;
+        } else {
+            return `mongodb://${url + database}`;
+        }
     } else {
-        return `mongodb://${db.url + port + database}`;
+        if (db.auth === true) {
+            return `mongodb://${auth + db.url + port + database + args}`;
+        } else {
+            return `mongodb://${db.url + port + database}`;
+        }
     }
 };
 
