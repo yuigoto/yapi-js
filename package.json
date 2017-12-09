@@ -1,36 +1,44 @@
 {
   "name": "yx-js-yapi",
   "version": "0.0.1",
-  "description": "A simple API built with Node, Express and MongoDB",
-  "main": "server.js",
+  "description": "A Node.js, Express and MongoDB-based simple API project.",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/yuigoto/yx-js-yapi.git"
+    "start": "npm run build && node dist/server.js",
+    "build": "rollup -c",
+    "dev": "nodemon --exec npm run start", 
+    "test": "nodemon --exec mocha"
   },
   "keywords": [
+    "javascript",
     "node",
-    "express",
     "mongodb",
+    "express",
     "api"
   ],
-  "author": "Fabio Yuiti Goto <lab@yuiti.com.br>",
+  "author": "Fabio Y. Goto <lab@yuiti.com.br>",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/yuigoto/yx-js-yapi/issues"
-  },
-  "homepage": "https://github.com/yuigoto/yx-js-yapi#readme",
   "dependencies": {
-    "async": "^2.5.0",
-    "body-parser": "^1.18.2",
     "crypto-js": "^3.1.9-1",
-    "express": "^4.16.1",
-    "jsonwebtoken": "^8.0.1",
-    "mongodb": "^2.2.31"
+    "express": "^4.16.2",
+    "jsonwebtoken": "^8.1.0",
+    "mongoose": "^4.13.6"
   },
   "devDependencies": {
-    "nodemon": "^1.12.1"
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babelrc-rollup": "^3.0.0",
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "copy": "^0.3.1",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.4",
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.52.1",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-includepaths": "^0.2.2"
   }
 }

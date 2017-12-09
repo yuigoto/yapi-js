@@ -1,9 +1,8 @@
-# FOLDERS
-.idea/
 .vscode/
+.idea/
+dist/
 node_modules/
 review/
 
-# FILES
-**/config/*.json
-!**/config/*.example.json
+src/config/*.js
+!src/config/*.example.js

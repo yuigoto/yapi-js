@@ -1,0 +1,12 @@
+{
+  "verbose": true, 
+  "watch": [
+    "src"
+  ], 
+  "ignore": [
+    "node_modules",  
+    "public"
+  ], 
+  "ext": "*", 
+  "exec": "node"
+}

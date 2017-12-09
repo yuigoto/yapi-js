@@ -1,0 +1,22 @@
+{
+  "presets": [
+    "es2015"
+  ], 
+  "minified": true, 
+  "comments": false, 
+  "plugins": [
+    [
+      "module-resolver", 
+      {
+        "root": ["./"], 
+        "alias": {
+          "src": "./src", 
+          "test": "./test"
+        }, 
+        "extensions": [
+          ".js", ".jsx", ".es", ".es6", ".mjs", ".json"
+        ]
+      }
+    ]
+  ]
+}
