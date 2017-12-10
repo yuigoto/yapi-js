@@ -11,6 +11,7 @@
 // ----------------------------------------------------------------------
 import express from "express";
 import mongoose from "mongoose";
+import path from "path";
 
 // Import local modules
 // ----------------------------------------------------------------------
@@ -51,15 +52,20 @@ app.use(express.json());
 // Define API routes
 app.use("/api", Routes);
 
+// Set app root
+app.use("/", express.static("public"));
+
+// Set app root
+app.get("/", (req, res) => {
+  res.sendFile(
+    path.resolve(__dirname, "../public", "index.html")
+  );
+});
+
 // Set all unmatched routes to a 404
 app.get(/^\/(.+)/, (req, res) => {
   // Send a 404 only
   res.status(404).send("404");
-});
-
-// Set app root
-app.get("/", (req, res) => {
-  res.send("Invalid Request");
 });
 
 // Start listening

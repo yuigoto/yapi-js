@@ -4,9 +4,10 @@
   "description": "A Node.js, Express and MongoDB-based simple API project.",
   "main": "index.js",
   "scripts": {
-    "start": "npm run build && node dist/server.js",
+    "start": "npm run build && npm run build:docs && node dist/server.js",
     "build": "rollup -c",
-    "dev": "nodemon --exec npm run start", 
+    "build:docs": "apidoc -i ./docs -o ./public", 
+    "dev": "nodemon --exec npm run start",
     "test": "nodemon --exec mocha"
   },
   "keywords": [
@@ -25,6 +26,7 @@
     "mongoose": "^4.13.6"
   },
   "devDependencies": {
+    "apidoc": "^0.17.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",

@@ -35,6 +35,24 @@ Routes.use("/healthcheck$", (req, res) => {
   );
 });
 
+// Root API Route
+Routes.use("/", (req, res) => {
+  res.status(403).send(
+    Response(
+      "NULL",
+      {},
+      "Access to this endpoint was denied.",
+      Error(
+        403,
+        {},
+        "Forbidden",
+        "Access to this endpoint was denied."
+      ),
+      {}
+    )
+  );
+});
+
 // Any unmatched routes
 Routes.use(/^\/(.+)/, (req, res) => {
   // Send a 404 only
@@ -48,24 +66,6 @@ Routes.use(/^\/(.+)/, (req, res) => {
         {},
         "Not Found",
         "Endpoint not found and/or non-existent."
-      ),
-      {}
-    )
-  );
-});
-
-// Root API Route
-Routes.use("/", (req, res) => {
-  res.status(403).send(
-    Response(
-      "NULL",
-      {},
-      "Access to this endpoint was denied.",
-      Error(
-        403,
-        {},
-        "Forbidden",
-        "Access to this endpoint was denied."
       ),
       {}
     )

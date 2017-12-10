@@ -1,8 +1,15 @@
+# IDE and text tditor folders
 .vscode/
 .idea/
-dist/
+
+# Ignore Libraries
 node_modules/
+
+# Ignored Build/Review Folderd
+dist/
+public/
 review/
 
+# Ignored Files/Types
 src/config/*.js
 !src/config/*.example.js

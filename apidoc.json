@@ -1,0 +1,10 @@
+{
+  "name": "YAPI (Yuiti's API)", 
+  "version": "0.0.1", 
+  "description": "YAPI documentation (in progress)", 
+  "url": "/api", 
+  "groups": [
+    "BASE", 
+    "AUTH"
+  ]
+}
