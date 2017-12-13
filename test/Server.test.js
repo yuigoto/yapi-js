@@ -44,12 +44,13 @@ describe("Server", () => {
         });
     });
 
-    it("Root route should only return 'Invalid Request'", done => {
+    it("Root route should return 200, and contain the documentation.", done => {
       chai.request(server)
         .get("/")
         .end((err, res) => {
           expect(res).to.have.status(200);
-          expect(res.text).to.be.a("String").equal("Invalid Request");
+          expect(res.text).to.be.a("String")
+            .match(/^\<\!DOCTYPE\shtml\>/);
           done();
         });
     });

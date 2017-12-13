@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run build && npm run build:docs && node dist/server.js",
     "build": "rollup -c",
-    "build:docs": "apidoc -i ./docs -o ./public", 
+    "build:docs": "apidoc -i ./docs -o ./public",
     "dev": "nodemon --exec npm run start",
     "test": "nodemon --exec mocha"
   },
