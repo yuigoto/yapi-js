@@ -1,9 +1,10 @@
 /**
- * YAPI : Core/PersonToToken
+ * YAPI : Core/Token
  * ======================================================================
- * Function to sign/generate a JSON Web Token from a user's auth credentials.
+ * Functions to sign/generate a JSON Web Token from a user's auth credentials,
+ * and to verify/convert back into credentials.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

@@ -4,7 +4,7 @@
  * Initial user object, this is the user added to the database when first
  * initialized.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

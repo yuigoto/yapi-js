@@ -1,9 +1,9 @@
 /**
- * YAPI : Server
+ * YAPI : Test/Server
  * ======================================================================
  * Tests the server and basic API.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
@@ -13,7 +13,22 @@ process.env.NODE_ENV = "test";
 // Import libs
 import chai, { expect, should } from "chai";
 import chai_http from "chai-http";
-import mongoose from "mongoose";
+
+// Import tests
+import CoreTest from "test/core/Core";
+import DBTest from "test/core/DB";
+import ExpressionsTest from "test/core/Expressions";
+import HealthcheckTest from "test/core/Healthcheck";
+import InitUserTest from "test/core/InitUser";
+import ResponseTest from "test/core/Response";
+import ResponseErrorTest from "test/core/ResponseError";
+import SecurityTest from "test/core/Security";
+import TokenTest from "test/core/Token";
+import UUIDTest from "test/core/UUID";
+
+// Import route tests
+import AuthRouteTest from "test/api/Auth";
+import MessagesRouteTest from "test/api/Messages";
 
 // Import local
 import server from "src/server";
@@ -22,6 +37,20 @@ import Healthcheck from "src/core/Healthcheck";
 // Fire up Should
 should();
 chai.use(chai_http);
+
+// Test all Core items first
+/*
+CoreTest();
+DBTest();
+ExpressionsTest();
+HealthcheckTest();
+InitUserTest();
+ResponseErrorTest();
+ResponseTest();
+SecurityTest();
+TokenTest();
+UUIDTest();
+*/
 
 // Execute tests
 describe("Server", () => {
@@ -62,8 +91,8 @@ describe("Server", () => {
         .get("/api")
         .end((err, res) => {
           expect(res).to.have.status(403);
-          expect(res.body).to.have.property("error").to.be.a("Object");
-          expect(res.body.error.title).to.be.a("String").equal("Forbidden");
+          expect(res.body.data).to.have.property("error").to.be.a("Object");
+          expect(res.body.data.error.title).to.be.a("String").equal("Forbidden");
           done();
         });
     });
@@ -73,8 +102,8 @@ describe("Server", () => {
         .get("/api/healthcheck")
         .end((err, res) => {
           expect(res).to.have.status(200);
-          expect(res.body).to.have.property("error").deep.equal({});
           expect(res.body.status).to.be.a("String").equal("SUCCESS");
+          expect(res.body.data).to.not.have.property("error");
           expect(res.body.data).to.be.a("Object").deep.equal(Healthcheck);
           done();
         });
@@ -90,5 +119,9 @@ describe("Server", () => {
         });
       done();
     });
+
+    // Test Auth Endpoints
+    // AuthRouteTest();
+    MessagesRouteTest();
   });
 });

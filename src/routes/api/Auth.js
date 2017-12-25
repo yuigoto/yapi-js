@@ -3,18 +3,18 @@
  * ======================================================================
  * Routes related to authentication.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
 // Import modules
-import express, { Router } from "express";
+import { Router } from "express";
 import crypto_md5 from "crypto-js/md5";
 
 // Import local
 import Core from "src/core/Core";
 import Response from "src/core/Response";
-import Error from "src/core/Error";
+import ResponseError from "src/core/ResponseError";
 import Token from "src/core/Token";
 import UUID from "src/core/UUID";
 
@@ -28,17 +28,16 @@ const Routes = Router();
 // No get access to this route
 Routes.get("/", (req, res) => {
   res.status(403).send(
-    Response(
-      "NULL",
+    new Response(
+      "VOID",
       {},
-      "Access to this endpoint was denied.",
-      Error(
+      null,
+      new ResponseError(
         403,
         {},
         "Forbidden",
         "Access to this endpoint was denied."
-      ),
-      {}
+      )
     )
   );
 });
@@ -56,17 +55,16 @@ Routes.post("/", (req, res) => {
 
     // We return, to avoid keep sending headers
     return res.status(401).send(
-      Response(
-        "NULL",
+      new Response(
+        "ERROR",
         {},
-        "Please, provide a valid username or e-mail address and password.",
-        Error(
+        null,
+        new ResponseError(
           401,
           {},
           "Unauthorized",
           "Please, provide a valid username or e-mail address and password."
-        ),
-        {}
+        )
       )
     );
   }
@@ -78,17 +76,16 @@ Routes.post("/", (req, res) => {
     });
 
     return res.status(401).send(
-      Response(
-        "NULL",
+      new Response(
+        "VOID",
         {},
-        "Use only an e-mail address or username to login, not both.",
-        Error(
+        null,
+        new ResponseError(
           401,
           {},
           "Unauthorized",
           "Use only an e-mail address or username to login, not both."
-        ),
-        {}
+        )
       )
     );
   }
@@ -100,17 +97,16 @@ Routes.post("/", (req, res) => {
     });
 
     return res.status(401).send(
-      Response(
+      new Response(
         "NULL",
         {},
-        "Please, provide a password.",
-        Error(
+        null,
+        new ResponseError(
           401,
           {},
           "Unauthorized",
           "Please, provide a password."
-        ),
-        {}
+        )
       )
     );
   }
@@ -134,11 +130,11 @@ Routes.post("/", (req, res) => {
     if (err) {
       // Error occurred! :(
       return res.send(
-        Response(
+        new Response(
           "ERROR",
           {},
-          "Database query error, could not request user data.",
-          Error(
+          null,
+          new ResponseError(
             500,
             {},
             "Error",
@@ -155,7 +151,7 @@ Routes.post("/", (req, res) => {
       ){
         // No user found
         return res.send(
-          Response(
+          new Response(
             "SUCCESS",
             {},
             "Username/e-mail address not registered in the database."
@@ -170,17 +166,16 @@ Routes.post("/", (req, res) => {
           // Check user's deletion status
           if (user_data.is_delete) {
             return res.status(401).send(
-              Response(
+              new Response(
                 "NULL",
                 {},
-                "This user account is/was marked for deletion and cannot be recovered.",
-                Error(
+                null,
+                new ResponseError(
                   401,
                   {},
                   "Account deleted",
                   "This user account is/was marked for deletion and cannot be recovered."
-                ),
-                {}
+                )
               )
             );
           }
@@ -188,17 +183,16 @@ Routes.post("/", (req, res) => {
           // Check user's banned status
           if (user_data.is_banned) {
             return res.status(401).send(
-              Response(
+              new Response(
                 "NULL",
                 {},
-                "User account banned.",
-                Error(
+                null,
+                new ResponseError(
                   401,
                   {},
                   "Account banned",
                   "User account banned."
-                ),
-                {}
+                )
               )
             );
           }
@@ -206,17 +200,16 @@ Routes.post("/", (req, res) => {
           // Check user's blocked by admin status
           if (user_data.is_blocked) {
             return res.status(401).send(
-              Response(
+              new Response(
                 "NULL",
                 {},
-                "User account blocked by the administrator.",
-                Error(
+                null,
+                new ResponseError(
                   401,
                   {},
                   "Account blocked by the admin",
                   "User account blocked by the administrator."
-                ),
-                {}
+                )
               )
             );
           }
@@ -224,17 +217,16 @@ Routes.post("/", (req, res) => {
           // Check user's locked status
           if (!user_data.is_active) {
             return res.status(401).send(
-              Response(
+              new Response(
                 "NULL",
                 {},
                 "User account locked, please activate it before logging in.",
-                Error(
+                new ResponseError(
                   401,
                   {},
                   "Account locked",
                   "User account locked, please activate it before logging in."
-                ),
-                {}
+                )
               )
             );
           }
@@ -291,7 +283,7 @@ Routes.post("/", (req, res) => {
 
             // Return JSON with token
             return res.send(
-              Response(
+              new Response(
                 "SUCCESS",
                 {
                   token: token
@@ -303,7 +295,7 @@ Routes.post("/", (req, res) => {
 
           // Failure fallback
           return res.status(200).send(
-            Response(
+            new Response(
               "SUCCESS",
               {},
               "Could not generate and sign user token, please try again."
@@ -313,17 +305,16 @@ Routes.post("/", (req, res) => {
 
         // If the password isn't valid
         return res.status(401).send(
-          Response(
+          new Response(
             "NULL",
             {},
             "Invalid password.",
-            Error(
+            new ResponseError(
               401,
               {},
               "Unauthorized",
               "Invalid password."
-            ),
-            {}
+            )
           )
         );
       }
@@ -342,11 +333,11 @@ Routes.post("/validate", (req, res) => {
   // If token is invalid
   if (person === false) {
     return res.status(401).send(
-      Response(
+      new Response(
         "ERROR",
         {},
         "Invalid token provided.",
-        Error(
+        new ResponseError(
           401,
           {},
           "Invalid Token",
@@ -358,7 +349,7 @@ Routes.post("/validate", (req, res) => {
 
   // Return a person object
   return res.send(
-    Response(
+    new Response(
       "SUCCESS",
       {
         person: person
@@ -371,17 +362,16 @@ Routes.post("/validate", (req, res) => {
 // No get access to this route
 Routes.use(/^\/(.+)/, (req, res) => {
   res.status(403).send(
-    Response(
-      "NULL",
+    new Response(
+      "VOID",
       {},
-      "Endpoint either forbidden and/or non-existent.",
-      Error(
+      null,
+      new ResponseError(
         403,
         {},
         "Forbidden",
         "Endpoint either forbidden and/or non-existent."
-      ),
-      {}
+      )
     )
   );
 });

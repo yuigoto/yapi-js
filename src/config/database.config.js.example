@@ -1,0 +1,41 @@
+/**
+ * YAPI : Config/Database
+ * ======================================================================
+ * Stores MongoDB configuration for the API.
+ *
+ * Must have the following attributes, some can be optionally empty, but all
+ * must be declared :
+ * - `url`: a string or array containing URLs for the database servers;
+ * - `port`: port for connection to the MongoDB database instances;
+ * - `name`: name of the database to connect to/use;
+ * - `authSource`: database that holds the collection for user credentials;
+ * - `user`: database user name;
+ * - `pass`: database user password;
+ * - `ssl`: boolean, flag that toggles SSL use;
+ * - `replicaSet`: replica set name;
+ * ----------------------------------------------------------------------
+ * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @since     0.0.1
+
+ /**
+ * Database data object.
+ *
+ * Can have the following attributes:
+ *
+ * @type {object}
+ */
+const Config = {
+  url: [
+    "localhost"
+  ],
+  port: "27017",
+  name: "auth",
+  authSource: "admin",
+  user: "[USERNAME]",
+  pass: "[PASSWORD]",
+  ssl: true,
+  replicaSet: "replicaSetName"
+};
+
+// Export
+export default Config;

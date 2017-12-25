@@ -3,7 +3,7 @@
  * ======================================================================
  * Just some data for checking installation.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
@@ -15,7 +15,7 @@
 const Healthcheck = {
   name: "YAPI (Yuiti's API)",
   author: "Fabio Y. Goto <lab@yuiti.com.br>",
-  version: "0.0.1",
+  version: "0.0.2",
   license: "MIT",
   copyright: "©2017 Fabio Y. Goto"
 };

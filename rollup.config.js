@@ -4,7 +4,7 @@
  * Config file for RollUp, so it can properly generate a bundled build
  * for the project.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

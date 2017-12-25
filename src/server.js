@@ -3,9 +3,11 @@
  * ======================================================================
  * Application entry point.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
+// Set environment variables
+require('dotenv').config();
 
 // Import libs
 // ----------------------------------------------------------------------
@@ -16,7 +18,9 @@ import path from "path";
 // Import local modules
 // ----------------------------------------------------------------------
 import Core from "src/core/Core";
+import Logger from "src/core/Logger";
 import Routes from "src/routes/Routes";
+import UserModel from "src/models/User.model";
 
 // Set app properties
 // ----------------------------------------------------------------------
@@ -34,8 +38,40 @@ mongoose.connect(
   Core.database.url,
   Core.database.options
 ).then((db) => {
-  if (db) {
+  if (db && app_env !== "development" && app_env !== "test") {
     // Add first user, if non-existent, here
+    UserModel.find({}, (err, post) => {
+      if (err) {
+        Logger(
+          "Could not search for users in the database.",
+          true,
+          "red",
+          null,
+          true
+        );
+      } else {
+        // Add User
+        new UserModel(Core.user).save((err, post) => {
+          if (err) {
+            Logger(
+              "Could not save initial user in the database. Check if it either exists or if you've set everything up correctly.",
+              true,
+              "red",
+              null,
+              true
+            );
+          } else {
+            Logger(
+              "Successfully addded first user",
+              true,
+              "orange",
+              null,
+              true
+            );
+          }
+        });
+      }
+    });
   }
 });
 

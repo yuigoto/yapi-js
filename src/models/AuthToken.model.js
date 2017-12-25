@@ -4,7 +4,7 @@
  * Stores objects with token data, used to validate/check access and, also,
  * to check for public key access.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

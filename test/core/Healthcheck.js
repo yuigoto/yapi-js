@@ -1,9 +1,9 @@
 /**
- * YAPI : Core/Healthcheck
+ * YAPI : Test/Core/Healthcheck
  * ======================================================================
  * Tests the Healthcheck response.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
@@ -11,7 +11,7 @@
 process.env.NODE_ENV = "test";
 
 // Import libs
-import chai, { expect, should } from "chai";
+import { expect, should } from "chai";
 
 // Import local
 import Healthcheck from "src/core/Healthcheck";
@@ -20,13 +20,13 @@ import Healthcheck from "src/core/Healthcheck";
 should();
 
 // Execute tests
-describe("Healthcheck", () => {
-  it("Must be an object", done => {
-    expect(Healthcheck).to.be.a("Object");
-    done();
-  });
+const Test = () => {
+  describe("Healthcheck", () => {
+    it("Must be an object", done => {
+      expect(Healthcheck).to.be.a("Object");
+      done();
+    });
 
-  describe("Should...", () => {
     it("Should have: name, author, version, license and copyright", done => {
       expect(Healthcheck).to.have.property("name").to.be.a("String");
       expect(Healthcheck).to.have.property("author").to.be.a("String");
@@ -36,4 +36,7 @@ describe("Healthcheck", () => {
       done();
     });
   });
-});
+};
+
+// Export test function
+export default Test;

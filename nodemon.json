@@ -1,7 +1,8 @@
 {
   "verbose": true, 
   "watch": [
-    "src"
+    "src",
+    "test"
   ], 
   "ignore": [
     "node_modules",  

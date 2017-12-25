@@ -3,7 +3,7 @@
  * ======================================================================
  * Database configuration parser.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

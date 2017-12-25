@@ -12,4 +12,4 @@ review/
 
 # Ignored Files/Types
 src/config/*.js
-!src/config/*.example.js
+!src/config/*.js.example

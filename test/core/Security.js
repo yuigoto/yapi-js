@@ -20,16 +20,21 @@ import Security from "src/core/Security";
 should();
 
 // Execute tests
-describe("Security", () => {
-  it("Security should be an object", done => {
-    expect(Security).to.be.a("Object");
-    done();
-  });
+const Test = () => {
+  describe("Security", () => {
+    it("Security should be an object", done => {
+      expect(Security).to.be.a("Object");
+      done();
+    });
 
-  it("Security salt should be set", done => {
-    expect(Security)
-      .to.have.property("salt")
-      .to.match(/^([a-f0-9]{8})(-([a-f0-9]{4})){3}-([a-f0-9]{12})$/);
-    done();
+    it("Security salt should be set, and should be an UUID", done => {
+      expect(Security)
+        .to.have.property("salt")
+        .to.match(/^([a-f0-9]{8})(-([a-f0-9]{4})){3}-([a-f0-9]{12})$/);
+      done();
+    });
   });
-});
+};
+
+// Export test function
+export default Test;

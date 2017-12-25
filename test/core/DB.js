@@ -1,9 +1,9 @@
 /**
  * YAPI : Test/Core/DB
  * ======================================================================
- * Tests the database config parser.
+ * Tests the DB object/configuration parser.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
@@ -11,7 +11,7 @@
 process.env.NODE_ENV = "test";
 
 // Import libs
-import chai, { expect, should } from "chai";
+import { expect, should } from "chai";
 
 // Import local
 import DB from "src/core/DB";
@@ -20,23 +20,23 @@ import DB from "src/core/DB";
 should();
 
 // Execute tests
-describe("DB Config", () => {
-  it("DB should be a function", done => {
-    expect(DB).to.be.a("Function");
-    done();
-  });
-
-  describe("Should...", () => {
-    it("Return false if input is not an object/JSON", done => {
-      expect(DB()).to.be.a("Boolean").equal(false);
-      expect(DB(1906132)).to.be.a("Boolean").equal(false);
-      expect(DB("32g69t60513")).to.be.a("Boolean").equal(false);
+const Test = () => {
+  describe("DB", () => {
+    it("Should be a function", done => {
+      expect(DB).to.be.a("Function");
       done();
     });
 
-    it("Accept the input only if it has predefined fields", done => {
-      // Define inputs
-      let input_a = {
+    it("Should return false if input is not anobject/JSON", done => {
+      expect(DB()).to.be.a("Boolean").equal(false);
+      expect(DB(198046512)).to.be.a("Boolean").equal(false);
+      expect(DB("q oi43iehksdmx")).to.be.a("Boolean").equal(false);
+      done();
+    });
+
+    it("Should accept input only if it has all fields, even if empty", done => {
+      // Declare test input A
+      let test_a = {
         url: "localhost",
         port: "27017",
         name: "",
@@ -47,7 +47,8 @@ describe("DB Config", () => {
         replicaSet: ""
       };
 
-      let input_b = {
+      // Declare test input B
+      let test_b = {
         port: "27017",
         name: "",
         authSource: "",
@@ -57,13 +58,12 @@ describe("DB Config", () => {
         replicaSet: ""
       };
 
-      // Test
-      expect(DB(input_a)).to.not.be.a("Boolean");
-      expect(DB(input_b)).to.be.a("Boolean").equal(false);
+      expect(DB(test_a)).to.not.be.a("Boolean");
+      expect(DB(test_b)).to.be.a("Boolean").equal(false);
       done();
     });
 
-    it("Should return an object, with specific fields", done => {
+    it("Must return an object, with specific fields, with valid input", done => {
       // Define inputs
       let input_a = {
         url: "localhost",
@@ -110,4 +110,7 @@ describe("DB Config", () => {
       done();
     });
   });
-});
+};
+
+// Export test function
+export default Test;

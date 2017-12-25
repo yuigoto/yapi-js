@@ -7,7 +7,7 @@
  * Once the security salt is first set and users created, DO NOT CHANGE it,
  * unless you want to wipe everything and start fresh.
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 

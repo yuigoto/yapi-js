@@ -2,7 +2,7 @@
  * YAPI : Test/Dummy
  * ======================================================================
  * ----------------------------------------------------------------------
- * @author    Fabio Y. Goto <lab@yuiti.com.br>
+ * @author    Fabio Y. Goto
  * @since     0.0.1
  */
 
@@ -10,7 +10,7 @@
 process.env.NODE_ENV = "test";
 
 // Import libs
-import chai, { expect, should } from "chai";
+import { expect, should } from "chai";
 import mongoose from "mongoose";
 
 // Import local
@@ -19,3 +19,8 @@ import mongoose from "mongoose";
 should();
 
 // Execute tests
+const Test = () => {
+};
+
+// Export test function
+export default Test;
